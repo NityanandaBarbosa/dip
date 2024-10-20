@@ -21,15 +21,16 @@ class Resize(ImageTransformer):
         image = cv2.imread(image_path)
         if image is None:
             print("Erro: não foi possível carregar a imagem. Verifique o caminho.")
-            return Exception('Image not found')
+            raise Exception('Image not found')
         return image
 
     def _transform(self, image):
-        novo_tamanho = (300, 300)
-        return cv2.resize(image, novo_tamanho)
+        new_size = (300, 300)
+        return cv2.resize(image, new_size)
 
     def _save_image(self, file : File, image : any):
         output_path = f'{Paths.OUTPUT}resized_{file.name_and_type}'
+        print(f'\nImagem transformada salva em {output_path}\n')
         cv2.imwrite(output_path, image)
 
     def _get_rgb_filename_and_type(self, path : str) -> File:

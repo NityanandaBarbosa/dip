@@ -21,7 +21,7 @@ class RgbToGray(ImageTransformer):
         image = cv2.imread(image_path)
         if image is None:
             print("Erro: não foi possível carregar a imagem. Verifique o caminho.")
-            return Exception('Image not found')
+            raise Exception('Image not found')
         return image
 
     def _transform(self, image):
@@ -29,6 +29,7 @@ class RgbToGray(ImageTransformer):
 
     def _save_image(self, file : File, image : any):
         output_path = f'{Paths.OUTPUT}gray_{file.name_and_type}'
+        print(f'\nImagem transformada salva em {output_path}\n')
         cv2.imwrite(output_path, image)
 
     def _get_rgb_filename_and_type(self, path : str) -> File:
