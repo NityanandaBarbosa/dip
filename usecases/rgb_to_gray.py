@@ -5,12 +5,16 @@ from entities import File
 class RgbToGray(ImageTransformer):
     def __init__(self):
         pass
+    
+    @property
+    def algorithm_name(self):
+        return 'RGB2GRAY'
 
     def execute(self, image_path : str):
         rgb_image = self._open_image(image_path=image_path)
         rgb_image_name = self._get_rgb_filename_and_type(path=image_path)
         image_gray = self._transform(rgb_image)
-        self._save_image(file=rgb_image_name, image_gray=image_gray)
+        self._save_image(file=rgb_image_name, image=image_gray)
         
 
     def _open_image(self, image_path : str):

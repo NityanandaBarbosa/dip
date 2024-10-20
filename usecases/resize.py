@@ -5,6 +5,10 @@ from entities import File
 class Resize(ImageTransformer):
     def __init__(self):
         pass
+    
+    @property
+    def algorithm_name(self):
+        return 'IMRESIZE'
 
     def execute(self, image_path : str):
         rgb_image = self._open_image(image_path=image_path)

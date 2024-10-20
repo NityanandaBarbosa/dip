@@ -3,6 +3,10 @@ from abc import ABC, abstractmethod
 from entities.file import File
 
 class ImageTransformer(ABC):
+    @property
+    @abstractmethod
+    def algorithm_name(self):
+        pass
 
     @abstractmethod
     def execute(self, image_path: str):
