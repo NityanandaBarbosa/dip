@@ -24,6 +24,7 @@ class Bootstrap:
     
     def _get_images(self) -> list[str]:
         images : list[str] = []
+        self._clear_terminal()
         for image in os.listdir(Paths.INPUT):
             if not image.endswith('.py'):
                print(f'image {image}')
@@ -98,4 +99,3 @@ class Bootstrap:
                 usecase.execute(image_path=f'{Paths.INPUT}{image}')
         except Exception as e:
             print(f'Não foi possivel transformar a imagem {e}')
-

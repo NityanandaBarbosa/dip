@@ -9,6 +9,11 @@ Certifique-se de ter instalado:
 - **Python 3.13.0**: [Baixar Python](https://www.python.org/downloads/)
 - **pip**: O gerenciador de pacotes do Python (já incluído na instalação do Python)
 
+## Como adicionar um nova imagem
+- Copie a imagem que deseja adicionar
+- Abra a pasta 'assets', depois acessse a pasta input
+- Cole a imagem selecionada
+
 ## Passos para rodar o projeto
 
 1. **Clone o repositório**:
@@ -41,3 +46,5 @@ Certifique-se de ter instalado:
     ```bash
     python main.py
     ```
+5. **Verifique a saida**:
+- Acesse assets -> output

@@ -1,5 +1,5 @@
 from usecases import *
-from core import Paths, Bootstrap
+from core import Bootstrap
 
 def main():
     bootstrap = Bootstrap()
