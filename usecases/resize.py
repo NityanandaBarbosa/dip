@@ -2,15 +2,15 @@ import cv2
 from core import ImageTransformer, Paths
 from entities import File
 
-class RgbToGray(ImageTransformer):
+class Resize(ImageTransformer):
     def __init__(self):
         pass
 
     def execute(self, image_path : str):
         rgb_image = self._open_image(image_path=image_path)
         rgb_image_name = self._get_rgb_filename_and_type(path=image_path)
-        image_gray = self._transform(rgb_image)
-        self._save_image(file=rgb_image_name, image_gray=image_gray)
+        resized_image = self._transform(rgb_image)
+        self._save_image(file=rgb_image_name, image=resized_image)
         
 
     def _open_image(self, image_path : str):
@@ -21,10 +21,11 @@ class RgbToGray(ImageTransformer):
         return image
 
     def _transform(self, image):
-        return cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+        novo_tamanho = (300, 300)
+        return cv2.resize(image, novo_tamanho)
 
     def _save_image(self, file : File, image : any):
-        output_path = f'{Paths.OUTPUT}gray_{file.name_and_type}'
+        output_path = f'{Paths.OUTPUT}resized_{file.name_and_type}'
         cv2.imwrite(output_path, image)
 
     def _get_rgb_filename_and_type(self, path : str) -> File:

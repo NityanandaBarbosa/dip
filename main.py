@@ -1,7 +1,9 @@
-from usecases.rgb_to_gray import RgbToGray
+from usecases import *
+from core import Paths
 
-INPUT_FOLDER = 'assets/input/'
+def main():
+    rgb_to_grey = Resize()
+    rgb_to_grey.execute(image_path= f'{Paths.INPUT}building.jpg')
 
 if __name__ == "__main__":
-    rgb_to_grey = RgbToGray()
-    rgb_to_grey.execute(image_path= f'{INPUT_FOLDER}building.jpg')
+    main()
