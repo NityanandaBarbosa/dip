@@ -10,8 +10,8 @@ class Bootstrap:
         transformers : list[ImageTransformer] = []
         for arquivo in os.listdir(Paths.USECASES):
             if arquivo.endswith('.py') and arquivo != '__init__.py':
-                caminho_arquivo = os.path.join(Paths.USECASES, arquivo)
-                spec = importlib.util.spec_from_file_location(arquivo[:-3], caminho_arquivo)
+                file_path = os.path.join(Paths.USECASES, arquivo)
+                spec = importlib.util.spec_from_file_location(arquivo[:-3], file_path)
                 modulo = importlib.util.module_from_spec(spec)
                 spec.loader.exec_module(modulo)
 
