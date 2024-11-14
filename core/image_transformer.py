@@ -29,6 +29,6 @@ class ImageTransformer(ABC):
         pass
 
     @abstractmethod
-    def _get_rgb_filename_and_type(self, path: str) -> File:
+    def _get_filename_and_type(self, path: str) -> File:
         """Obtém o nome e a extensão do arquivo."""
         pass
