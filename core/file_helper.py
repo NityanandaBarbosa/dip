@@ -15,8 +15,8 @@ class FileHelper:
         return image
         
     @staticmethod
-    def save_image(file : File, image : any) -> list[str]:
-        output_path = f'{Paths.OUTPUT}resized_{file.name_and_type}'
+    def save_image(file : File, image : any, sufix : str) -> list[str]:
+        output_path = f'{Paths.OUTPUT}{sufix}_{file.name_and_type}'
         print(f'\nImagem transformada salva em {output_path}\n')
         cv2.imwrite(output_path, image)
     

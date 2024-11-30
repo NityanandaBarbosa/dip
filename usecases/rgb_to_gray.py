@@ -25,7 +25,7 @@ class RgbToGray(ImageTransformer):
         return cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 
     def _save_image(self, file : File, image : any):
-        FileHelper.save_image(file=file, image=image)
+        FileHelper.save_image(file=file, image=image, sufix='gray')
 
     def _get_filename_and_type(self, path : str) -> File:
         return FileHelper.get_filename_and_type(path=path)

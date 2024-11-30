@@ -26,7 +26,7 @@ class Resize(ImageTransformer):
         return cv2.resize(image, new_size)
 
     def _save_image(self, file : File, image : any):
-        FileHelper.save_image(file=file, image=image)
+        FileHelper.save_image(file=file, image=image, sufix='resized')
 
     def _get_filename_and_type(self, path : str) -> File:
        return FileHelper.get_filename_and_type(path=path)
