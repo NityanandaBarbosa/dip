@@ -22,23 +22,12 @@ class HideCarPlate(ImageTransformer):
         return FileHelper.open_image(image_path=image_path)
 
     def _transform(self, image):
-        gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
-        blur = cv2.GaussianBlur(gray, (5, 5), 0)
-        edged = cv2.Canny(blur, 30, 150)
-        contours, _ = cv2.findContours(edged, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
-        for c in contours:
-            peri = cv2.arcLength(c, True)
-            approx = cv2.approxPolyDP(c, 0.02 * peri, True)
-            if len(approx) == 4:
-                x, y, w, h = cv2.boundingRect(approx)
-                aspect_ratio = w / h if h != 0 else 0 
-                if 3.2 < aspect_ratio < 3.5:
-                    print(aspect_ratio)
-                    cv2.rectangle(image, (x, y), (x + w, y + h), (0, 0, 0), -1)
-
+        placa_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + "haarcascade_russian_plate_number.xml")
+        gray_image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+        placas = placa_cascade.detectMultiScale(gray_image, scaleFactor=1.1, minNeighbors=5, minSize=(30, 30))
+        for (x, y, w, h) in placas:
+            image[y:y+h, x:x+w] = cv2.GaussianBlur(image[y:y+h, x:x+w], (51, 51), 30)
         return image
-
-
 
     def _save_image(self, file : File, image : any):
         FileHelper.save_image(file=file, image=image, sufix= 'hide_plate')
