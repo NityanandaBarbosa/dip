@@ -30,7 +30,7 @@ class HideCarPlate(ImageTransformer):
         return image
 
     def _save_image(self, file : File, image : any):
-        FileHelper.save_image(file=file, image=image, sufix= 'hide_plate')
+        FileHelper.save_image(file=file, image=image, sufix= self.algorithm_name.lower())
 
     def _get_filename_and_type(self, path : str) -> File:
        return FileHelper.get_filename_and_type(path=path)
