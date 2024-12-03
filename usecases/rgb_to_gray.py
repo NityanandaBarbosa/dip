@@ -1,5 +1,6 @@
 import cv2
 from core import ImageTransformer, Paths
+from core.file_helper import FileHelper
 from entities import File
 
 class RgbToGray(ImageTransformer):
@@ -12,26 +13,19 @@ class RgbToGray(ImageTransformer):
 
     def execute(self, image_path : str):
         rgb_image = self._open_image(image_path=image_path)
-        rgb_image_name = self._get_rgb_filename_and_type(path=image_path)
+        rgb_image_name = self._get_filename_and_type(path=image_path)
         image_gray = self._transform(rgb_image)
         self._save_image(file=rgb_image_name, image=image_gray)
         
 
     def _open_image(self, image_path : str):
-        image = cv2.imread(image_path)
-        if image is None:
-            print("Erro: não foi possível carregar a imagem. Verifique o caminho.")
-            raise Exception('Image not found')
-        return image
+        return FileHelper.open_image(image_path=image_path)
 
     def _transform(self, image):
         return cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 
     def _save_image(self, file : File, image : any):
-        output_path = f'{Paths.OUTPUT}gray_{file.name_and_type}'
-        print(f'\nImagem transformada salva em {output_path}\n')
-        cv2.imwrite(output_path, image)
+        FileHelper.save_image(file=file, image=image, sufix= self.algorithm_name.lower())
 
-    def _get_rgb_filename_and_type(self, path : str) -> File:
-        filename = path.split('/')[-1].split('.')
-        return File(filename[0], filename[-1])
+    def _get_filename_and_type(self, path : str) -> File:
+        return FileHelper.get_filename_and_type(path=path)
