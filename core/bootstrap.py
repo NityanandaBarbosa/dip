@@ -27,7 +27,6 @@ class Bootstrap:
         self._clear_terminal()
         for image in os.listdir(Paths.INPUT):
             if not image.endswith('.py'):
-               print(f'image {image}')
                images.append(image)
 
         return images
