@@ -3,7 +3,7 @@ from core import ImageTransformer, Paths
 from core.file_helper import FileHelper
 from entities import File
 
-class EdgeDection(ImageTransformer):
+class EdgeDectionCanny(ImageTransformer):
     def __init__(self):
         pass
     

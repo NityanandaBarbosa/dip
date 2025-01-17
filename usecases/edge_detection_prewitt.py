@@ -4,7 +4,7 @@ from core import ImageTransformer, Paths
 from core.file_helper import FileHelper
 from entities import File
 
-class PrewittEdgeDetection(ImageTransformer):
+class EdgeDetectionPrewitt(ImageTransformer):
     def __init__(self):
         pass
     
